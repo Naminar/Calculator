@@ -3,7 +3,6 @@
 #include "memory.hpp"
 
 // template<typename T = double>
-void chkl(auto prtaafsdf)
 
 class Program
 {
