@@ -10,7 +10,10 @@ class Program
 
 public:
 	unsigned char program_memory[36] = {};
-	void add(unsigned char code) { program_memory[position] = code; } // запись кода в массив
+	void add(unsigned char code) { 
+		program_memory[position] = code; 
+		position++;
+	} // запись кода в массив
 	unsigned char operator[](int pos) { return program_memory[pos]; } // it = prog[13];
 	void set_position(int pos) { position = pos; }
 	void fin_subprogram() { position = 0; }
