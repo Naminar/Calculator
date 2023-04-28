@@ -66,19 +66,19 @@ void Connection::command_hendler(int programm_index)
         switch ( button_hash / 10)
         {
             case 0:
-                create_tablo_information();//  e^ix
+                mem.cosinus(); //create_tablo_information();//  e^ix
                 break;
 
             case 1:
-                create_tablo_information();//  ln
+                mem.ln(); //create_tablo_information();//  ln
                 break;
 
             case 2:
-                create_tablo_information(); //pi
+                mem.pi(); //create_tablo_information(); //pi
                 break;
 
             case 3:
-                 create_tablo_information(); // e^x
+                 mem.expPower();//create_tablo_information(); // e^x
                 break;
 
             case 4:
@@ -98,11 +98,11 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 8:
-                create_tablo_information(); // cos
+                mem.cosinus(); //create_tablo_information(); // cos
                 break;
 
             case 9:
-                create_tablo_information(); // sin
+                mem.sinus(); //create_tablo_information(); // sin
                 break;
 
             default:
@@ -134,11 +134,11 @@ void Connection::command_hendler(int programm_index)
         switch ( button_hash / 10)
         {
             case 0:
-                create_tablo_information();//  from x to y
+                create_tablo_information();
                 break;
 
             case 1:
-                create_tablo_information();//  change x and y
+                create_tablo_information();
                 break;
 
             case 2:
@@ -150,15 +150,16 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 4:
-                create_tablo_information();// 1/x
+                mem.reciprocal(); //create_tablo_information();// 1/x
                 break;
 
             case 5:
-                create_tablo_information();// x^2
+                mem.square(); //create_tablo_information();// x^2
                 break;
 
             case 6:
-                create_tablo_information();// sqrt
+                //create_tablo_information();// sqrt
+                mem.squareRoot();
                 break;
 
             case 7:
@@ -188,11 +189,11 @@ void Connection::command_hendler(int programm_index)
         switch ( button_hash / 10)
         {
             case 0:
-                mem.xyChange();//  from x to y
+                mem.storeRegister(0);//create_tablo_information();//  from x to y
                 break;
 
             case 1:
-                create_tablo_information();//  change x and y
+                mem.xyChange();//  change x and y
                 break;
 
             case 2:
@@ -204,7 +205,7 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 4:
-                create_tablo_information();// comma
+                //create_tablo_information();// comma
                 comma_button_flag = true;
                 break;
 
@@ -213,7 +214,7 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 6:
-                create_tablo_information();// BÏ
+                create_tablo_information();// BH
                 break;
 
             case 7:
