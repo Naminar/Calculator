@@ -36,6 +36,6 @@ class Connection
 
     void command_hendler(int programm_index);
 
-    void create_tablo_information(void);
+    void create_tablo_information(bool str_here = false, std::string error_line = "0");
 };
 

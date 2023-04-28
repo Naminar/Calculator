@@ -7,6 +7,10 @@ void Connection::command_hendler(int programm_index)
 
     create_tablo_information();*/
 
+    bool error_key = false;
+
+    std::string error_line;
+
     if ( button_hash % 10 == 1 )
     {
         // command 'p'to registers
@@ -15,7 +19,7 @@ void Connection::command_hendler(int programm_index)
 
         num_button_flag = false;
 
-        create_tablo_information();
+        //create_tablo_information();
     }
     else if ( button_hash % 10 == 2 )
     {
@@ -25,7 +29,7 @@ void Connection::command_hendler(int programm_index)
 
         num_button_flag = false;
 
-        create_tablo_information();
+        //create_tablo_information();
     }
     else if ( button_hash % 10 == 3 )
     {
@@ -86,7 +90,7 @@ void Connection::command_hendler(int programm_index)
             */
         };
 
-        create_tablo_information();
+        //create_tablo_information();
     }
     else if ( button_hash % 10 == 4 )
     {
@@ -100,7 +104,7 @@ void Connection::command_hendler(int programm_index)
 
         //comma_button_flag
 
-        create_tablo_information();
+        //create_tablo_information();
     }
     else if ( button_hash % 10 == 5 )
     {
@@ -131,7 +135,7 @@ void Connection::command_hendler(int programm_index)
             case 4:
             {
                 try { mem.reciprocal(); }
-                catch( ... ) { screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
+                catch( ... ) { error_key = true; error_line = "ERROR - division by 0";}//screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
 
                 break;
             }
@@ -140,7 +144,7 @@ void Connection::command_hendler(int programm_index)
             {
                 mem.square(); //create_tablo_information();// x^2
                 
-                create_tablo_information();
+                //create_tablo_information();
 
                 break;
             }
@@ -149,7 +153,7 @@ void Connection::command_hendler(int programm_index)
                 //create_tablo_information();// sqrt
                 mem.squareRoot();
                 
-                create_tablo_information();
+                //create_tablo_information();
                 
                 break;
             }
@@ -244,12 +248,14 @@ void Connection::command_hendler(int programm_index)
             */
         };
     
-        create_tablo_information();
+        //create_tablo_information();
     }
+
+    create_tablo_information(error_key, error_line);
 
 }
 
-void Connection::create_tablo_information(void)
+void Connection::create_tablo_information(bool str_here, std::string error_line)
 {
     //mem.roundStack[0];
     //mem.registers[0];
@@ -264,6 +270,10 @@ void Connection::create_tablo_information(void)
 
         screen_data.registers[ind] = std::to_string( mem.registers[ind]);
     }
+
+    if ( str_here == true )
+        screen_data.ball[0] = error_line;
+
 
     std::cout << "--------registers-------- \n YYY:" << std::endl;
 
