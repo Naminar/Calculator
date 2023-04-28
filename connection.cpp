@@ -129,18 +129,30 @@ void Connection::command_hendler(int programm_index)
             */
 
             case 4:
-                mem.reciprocal(); //create_tablo_information();// 1/x
-                break;
+            {
+                try { mem.reciprocal(); }
+                catch( ... ) { screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
 
+                break;
+            }
+        
             case 5:
+            {
                 mem.square(); //create_tablo_information();// x^2
-                break;
+                
+                create_tablo_information();
 
+                break;
+            }
             case 6:
+            {
                 //create_tablo_information();// sqrt
                 mem.squareRoot();
+                
+                create_tablo_information();
+                
                 break;
-
+            }
             /*
             
             case 7:
@@ -169,8 +181,6 @@ void Connection::command_hendler(int programm_index)
 
             */
         };
-
-        create_tablo_information();
     }
     else if ( button_hash % 10 == 6)
     {
@@ -360,8 +370,8 @@ int main()
     x.get_button_num('P');
     x.get_button_num(48);
 
-    //x.get_button_num('F');
-    //x.get_button_num(46);
+    x.get_button_num('F');
+    x.get_button_num(46);
 
     x.get_button_num('P');
     x.get_button_num(46);
