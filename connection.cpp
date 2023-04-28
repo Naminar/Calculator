@@ -346,8 +346,8 @@ int main()
     x.get_button_num('P');
     x.get_button_num(48);
 
-    x.get_button_num('F');
-    x.get_button_num(46);
+    //x.get_button_num('F');
+    //x.get_button_num(46);
 
     x.get_button_num('P');
     x.get_button_num(46);
