@@ -1,43 +1,5 @@
 
-#include <iostream>
-#include <string>
-#include "memory.hpp"
-
-struct Data
-{
-    //std::string screen_tablo = "0";
-
-    std::string proga[36];
-
-    std::string registers[8];
-
-    std::string ball[8];
-};
-
-class Connection
-{
-    int button_hash   = 0;
-    bool mode_pressed = false;
-    bool num_button_flag = false; // the last tap was number button
-    bool comma_button_flag = false;
-    //int (**called_function)(struct memory) = nullptr;
-
-    public:
-
-    Memory<double> mem;
-
-    public:
-
-    Data screen_data;
-
-    void get_button_num(int button_index);
-
-    void command_hendler(int programm_index);
-
-    void create_tablo_information(void);
-};
-
-
+#include "connection.hpp"
 
 void Connection::command_hendler(int programm_index)
 {
@@ -271,6 +233,21 @@ void Connection::create_tablo_information(void)
         std::cout << screen_data.ball[ind] << std::endl;
 
     }
+
+    std::cout << "--------progaram--------" << std::endl;
+
+    char x = 34;
+    
+    for ( size_t ind = 0; ind < 35; ind++ )
+    {
+        if (ind % 5 < 4)
+            std::cout << std::to_string(x) << " ";
+        else
+            std::cout << std::to_string(x) << std::endl; //screen_data.program_memory[ind] << std::endl;
+
+    }
+
+    std::cout << std::endl;
 }
 
 void Connection::get_button_num(int button_index)
