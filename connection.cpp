@@ -98,7 +98,7 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 8:
-                mem.cosinus(); //create_tablo_information(); // cos
+                { mem.cosinus(); create_tablo_information(); }//create_tablo_information(); // cos
                 break;
 
             case 9:
@@ -359,6 +359,8 @@ int main()
     x.get_button_num(46);
     x.get_button_num(34);
 
+    x.get_button_num('P');
+    x.get_button_num(86);
 
     //std::cout << "tablo information " << x.screen_data.screen_tablo << std::endl;
 
