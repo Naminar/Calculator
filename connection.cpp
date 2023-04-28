@@ -14,6 +14,8 @@ void Connection::command_hendler(int programm_index)
         mem.storeRegister( button_hash / 10);
 
         num_button_flag = false;
+
+        create_tablo_information();
     }
     else if ( button_hash % 10 == 2 )
     {
@@ -22,27 +24,31 @@ void Connection::command_hendler(int programm_index)
         mem.loadRegister( button_hash / 10);
 
         num_button_flag = false;
+
+        create_tablo_information();
     }
     else if ( button_hash % 10 == 3 )
     {
         switch ( button_hash / 10)
         {
             case 0:
-                mem.cosinus(); //create_tablo_information();//  e^ix
+                mem.cosinus(); // e^ix
                 break;
 
             case 1:
-                mem.ln(); //create_tablo_information();//  ln
+                mem.ln(); // ln
                 break;
 
             case 2:
-                mem.pi(); //create_tablo_information(); //pi
+                mem.pi(); // pi
                 break;
 
             case 3:
-                 mem.expPower();//create_tablo_information(); // e^x
+                 mem.expPower(); // e^x
                 break;
 
+            /*
+            
             case 4:
                 create_tablo_information();
                 break;
@@ -58,22 +64,29 @@ void Connection::command_hendler(int programm_index)
             case 7:
                 create_tablo_information();
                 break;
+            
+            */
 
             case 8:
-                { mem.cosinus(); create_tablo_information(); }//create_tablo_information(); // cos
+                mem.cosinus(); //create_tablo_information(); } // cos
                 break;
 
             case 9:
-                mem.sinus(); //create_tablo_information(); // sin
+                mem.sinus(); // sin
                 break;
 
+            /*
             default:
             {
                 std::cout << __PRETTY_FUNCTION__ << std::endl;
 
                 exit(3);
             }
+            
+            */
         };
+
+        create_tablo_information();
     }
     else if ( button_hash % 10 == 4 )
     {
@@ -95,6 +108,8 @@ void Connection::command_hendler(int programm_index)
 
         switch ( button_hash / 10)
         {
+            /*
+            
             case 0:
                 create_tablo_information();
                 break;
@@ -110,6 +125,8 @@ void Connection::command_hendler(int programm_index)
             case 3:
                  create_tablo_information();
                 break;
+            
+            */
 
             case 4:
                 mem.reciprocal(); //create_tablo_information();// 1/x
@@ -124,6 +141,8 @@ void Connection::command_hendler(int programm_index)
                 mem.squareRoot();
                 break;
 
+            /*
+            
             case 7:
                 create_tablo_information();
                 break;
@@ -135,14 +154,23 @@ void Connection::command_hendler(int programm_index)
             case 9:
                 create_tablo_information();
                 break;
+            
+            */
 
+
+            /*
+            
             default:
             {
                 std::cout << __PRETTY_FUNCTION__ << std::endl;
 
                 exit(3);
             }
+
+            */
         };
+
+        create_tablo_information();
     }
     else if ( button_hash % 10 == 6)
     {
@@ -151,11 +179,11 @@ void Connection::command_hendler(int programm_index)
         switch ( button_hash / 10)
         {
             case 0:
-                mem.storeRegister(0);//create_tablo_information();//  from x to y
+                mem.storeRegister(0); // from x to y
                 break;
 
             case 1:
-                mem.xyChange();//  change x and y
+                mem.xyChange(); // change x and y
                 break;
 
             case 2:
@@ -167,7 +195,7 @@ void Connection::command_hendler(int programm_index)
                 break;
 
             case 4:
-                //create_tablo_information();// comma
+                // comma
                 comma_button_flag = true;
                 break;
 
@@ -175,6 +203,8 @@ void Connection::command_hendler(int programm_index)
                 mem.opposite();
                 break;
 
+            /*
+            
             case 6:
                 create_tablo_information();// BH
                 break;
@@ -182,6 +212,7 @@ void Connection::command_hendler(int programm_index)
             case 7:
                 create_tablo_information();// RESET - CX
                 break;
+            */
 
             case 8:
                 mem.minus();
@@ -191,13 +222,19 @@ void Connection::command_hendler(int programm_index)
                 mem.plus();
                 break;
 
+            /*
+            
             default:
             {
                 std::cout << __PRETTY_FUNCTION__ << std::endl;
 
                 exit(3);
             }
+
+            */
         };
+    
+        create_tablo_information();
     }
 
 }
@@ -218,7 +255,7 @@ void Connection::create_tablo_information(void)
         screen_data.registers[ind] = std::to_string( mem.registers[ind]);
     }
 
-    std::cout << "--------registers--------" << std::endl;
+    std::cout << "--------registers-------- \n YYY:" << std::endl;
 
     for ( size_t ind = 0; ind < 7; ind++ )
     {
@@ -226,7 +263,7 @@ void Connection::create_tablo_information(void)
 
     }
 
-    std::cout << "--------ball--------" << std::endl;
+    std::cout << "--------ball-------- \n XXX:" << std::endl;
 
     for ( size_t ind = 0; ind < 7; ind++ )
     {
@@ -234,7 +271,7 @@ void Connection::create_tablo_information(void)
 
     }
 
-    std::cout << "--------progaram--------" << std::endl;
+    std::cout << "--------program--------" << std::endl;
 
     char x = 34;
     
@@ -338,6 +375,8 @@ int main()
 
     x.get_button_num('P');
     x.get_button_num(86);
+
+    x.get_button_num(16);
 
     //std::cout << "tablo information " << x.screen_data.screen_tablo << std::endl;
 
