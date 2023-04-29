@@ -22,11 +22,15 @@ class Connection
     bool mode_pressed = false;
     bool num_button_flag = false; // the last tap was number button
     bool comma_button_flag = false;
+
+    bool mode_enter_progarm = false;
     //int (**called_function)(struct memory) = nullptr;
 
     public:
 
     Memory<double> mem;
+
+    Program program_mem;
 
     public:
 

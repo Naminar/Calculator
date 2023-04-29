@@ -364,6 +364,10 @@ void Connection::get_button_num(int button_index)
                 else if ( button_hash == 2 )
                     button_hash = button_index - 1;
             }
+            /*else if ( butto_index == "РП" )
+            {
+                mode_enter_progarm = true;
+            }*/
             // reset mode pressed button
 
             mode_pressed = false;
