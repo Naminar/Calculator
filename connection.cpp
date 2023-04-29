@@ -383,6 +383,11 @@ void Connection::get_button_num(int button_index)
         if ( mode_enter_progarm == true )
         {
             add_program_handler();
+
+            if ( button_hash == 78 ) // end of enter mode with button C/P
+            {
+                mode_enter_progarm = false;
+            }
         }
         else
             command_handler();

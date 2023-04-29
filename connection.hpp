@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <string>
-#include  "program.hpp"
+#include "program.hpp"
 
 struct Data
 {
