@@ -38,8 +38,10 @@ class Connection
 
     void get_button_num(int button_index);
 
-    void command_hendler(void);
+    void command_handler(void);
 
     void create_tablo_information(bool str_here = false, std::string error_line = "0");
+
+    void add_program_handler(void);
 };
 

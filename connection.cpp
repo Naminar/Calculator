@@ -1,7 +1,7 @@
 
 #include "connection.hpp"
 
-void Connection::command_hendler()
+void Connection::command_handler()
 {
     /*std::cout << programm_index << std::endl;
 
@@ -255,12 +255,10 @@ void Connection::command_hendler()
 
 }
 
-/*void program_hendler(ing button_hash_)
+void Connection::add_program_handler()
 {
-    button_hash = button_hash_;
-
-    command_hendler();
-}*/
+    program_mem.add(button_hash);
+}
 
 void Connection::create_tablo_information(bool str_here, std::string error_line)
 {
@@ -281,6 +279,12 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     if ( str_here == true )
         screen_data.ball[0] = error_line;
 
+    for ( size_t ind = 0; ind < 36; ind++ )
+    {        
+            screen_data.program_memory[ind] = std::to_string( program_mem.program_memory[ind]);
+    }
+
+
 
     std::cout << "--------registers-------- \n YYY:" << std::endl;
 
@@ -299,15 +303,13 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     }
 
     std::cout << "--------program--------" << std::endl;
-
-    char x = 34;
     
-    for ( size_t ind = 0; ind < 35; ind++ )
+    for ( size_t ind = 0; ind < 36; ind++ )
     {
-        if (ind % 5 < 4)
-            std::cout << std::to_string(x) << " ";
+        if (ind % 7 < 6)
+            std::cout << screen_data.program_memory[ind] << " ";
         else
-            std::cout << std::to_string(x) << std::endl; //screen_data.program_memory[ind] << std::endl;
+            std::cout << screen_data.program_memory[ind] << std::endl; //screen_data.program_memory[ind] << std::endl;
 
     }
 
@@ -332,7 +334,7 @@ void Connection::get_button_num(int button_index)
     }
     else
     {
-        // hendler of P and F mode
+        // handler of P and F mode
         if ( mode_pressed == true )
         {
 
@@ -368,6 +370,7 @@ void Connection::get_button_num(int button_index)
             {
                 mode_enter_progarm = true;
             }*/
+            
             // reset mode pressed button
 
             mode_pressed = false;
@@ -377,7 +380,12 @@ void Connection::get_button_num(int button_index)
             button_hash = button_index;
         }
 
-       command_hendler();
+        if ( mode_enter_progarm == true )
+        {
+            add_program_handler();
+        }
+        else
+            command_handler();
     }
 }
 
