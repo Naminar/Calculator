@@ -306,7 +306,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     
     for ( size_t ind = 0; ind < 36; ind++ )
     {
-        if (ind % 7 < 6)
+        if (ind % 6 < 5)
             std::cout << screen_data.program_memory[ind] << " ";
         else
             std::cout << screen_data.program_memory[ind] << std::endl; //screen_data.program_memory[ind] << std::endl;
@@ -331,6 +331,22 @@ void Connection::get_button_num(int button_index)
             button_hash = 2;
 
         mode_pressed = true;
+    }
+    else if ( button_index == RP && mode_pressed == true )
+    {
+        mode_enter_progarm = true;
+
+        std::cout << "enter_progrmm"<< std::endl;
+
+    //------ all flags and hash ------
+        
+        button_hash = 0;
+
+        num_button_flag = false;
+
+        mode_pressed = false;
+
+        comma_button_flag = false;
     }
     else
     {
@@ -359,18 +375,32 @@ void Connection::get_button_num(int button_index)
                 //else if ( button_index == 76)
 
             }
-            else if ( button_index % 10 == 8)
+            else if ( button_index % 10 == 8 )
             {
                 if ( button_hash == 1)
                     button_hash += button_index;
                 else if ( button_hash == 2 )
                     button_hash = button_index - 1;
             }
-            /*else if ( butto_index == "РП" )
+            /*else if ( button_index == RP )
             {
                 mode_enter_progarm = true;
-            }*/
+
+                std::cout << "enter_progrmm"<< std::endl;
+
+            //------ all flags and hash ------
+                
+                button_hash = 0;
+
+                num_button_flag = false;
+
+                mode_pressed = false;
+
+                comma_button_flag = false;
             
+                continue;
+            }
+            */
             // reset mode pressed button
 
             mode_pressed = false;
@@ -384,9 +414,21 @@ void Connection::get_button_num(int button_index)
         {
             add_program_handler();
 
-            if ( button_hash == 78 ) // end of enter mode with button C/P
+            create_tablo_information();
+
+            if ( button_hash == CP ) // end of enter mode with button C/P
             {
+                std::cout << "end of program enter" << std::endl;
+                
                 mode_enter_progarm = false;
+                
+                button_hash = 0;
+
+                num_button_flag = false;
+
+                mode_pressed = false;
+
+                comma_button_flag = false;
             }
         }
         else
@@ -421,6 +463,20 @@ int main()
     x.get_button_num(86);
 
     x.get_button_num(16);
+
+    x.get_button_num('P');
+    x.get_button_num(RP);
+
+    x.get_button_num('P');
+    x.get_button_num(6);
+
+    x.get_button_num('P');
+    x.get_button_num(6);
+
+    x.get_button_num('P');
+    x.get_button_num(6);
+
+    x.get_button_num(CP);
 
     //std::cout << "tablo information " << x.screen_data.screen_tablo << std::endl;
 

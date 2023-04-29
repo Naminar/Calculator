@@ -3,6 +3,9 @@
 #include <string>
 #include "program.hpp"
 
+#define RP 100
+#define CP 78
+
 struct Data
 {
     //std::string screen_tablo = "0";
