@@ -278,9 +278,9 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
     if ( str_here == true )
         screen_data.ball[0] = error_line;
-
+    
     for ( size_t ind = 0; ind < 36; ind++ )
-    {        
+    {                    
             screen_data.program_memory[ind] = std::to_string( program_mem.program_memory[ind]);
     }
 
