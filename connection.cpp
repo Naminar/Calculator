@@ -1,7 +1,7 @@
 
 #include "connection.hpp"
 
-void Connection::command_hendler(int programm_index)
+void Connection::command_hendler()
 {
     /*std::cout << programm_index << std::endl;
 
@@ -255,6 +255,13 @@ void Connection::command_hendler(int programm_index)
 
 }
 
+/*void program_hendler(ing button_hash_)
+{
+    button_hash = button_hash_;
+
+    command_hendler();
+}*/
+
 void Connection::create_tablo_information(bool str_here, std::string error_line)
 {
     //mem.roundStack[0];
@@ -366,7 +373,7 @@ void Connection::get_button_num(int button_index)
             button_hash = button_index;
         }
 
-       command_hendler(button_hash);
+       command_hendler();
     }
 }
 

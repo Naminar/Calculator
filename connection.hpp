@@ -34,7 +34,7 @@ class Connection
 
     void get_button_num(int button_index);
 
-    void command_hendler(int programm_index);
+    void command_hendler(void);
 
     void create_tablo_information(bool str_here = false, std::string error_line = "0");
 };
