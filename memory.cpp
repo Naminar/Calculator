@@ -1,7 +1,7 @@
 #include "memory.hpp"
 
 template<typename T>
-void Memory<T>::Dump() {
+void Memory<T>::dump() {
     std::cout << "----------------------------------------" << std::endl;
 
     std::cout << "x = " << std::setprecision(10) << roundStack[0] << std::endl;
@@ -27,22 +27,22 @@ void Memory<T>::Dump() {
 
     try {
         mem.storeDigit(2);
-        mem.Dump();
+        mem.dump();
 
         mem.storeDigit(3);
-        mem.Dump();
+        mem.dump();
 
         mem.storeDigit(8, true);
-        mem.Dump();
+        mem.dump();
 
         mem.storeDigit(9, true);
-        mem.Dump();
+        mem.dump();
 
         mem.storeDigit(6);
-        mem.Dump();
+        mem.dump();
 
         mem.storeDigit(6, true);
-        mem.Dump();
+        mem.dump();
         //mem.squareRoot();
         //mem.reciprocal();
         //mem.divide();

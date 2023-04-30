@@ -203,7 +203,7 @@ void Connection::command_handler()
                 break;
 
             case 1:
-                mem.xyChange(); // change x and y
+                mem.swapXY(); // change x and y
                 break;
 
             case 2:
@@ -492,7 +492,7 @@ int main()
 
     //std::cout << "tablo information " << x.screen_data.screen_tablo << std::endl;
 
-    //x.mem.Dump();
+    //x.mem.dump();
 
     return 0;
 }

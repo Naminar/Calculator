@@ -75,13 +75,17 @@ void squareRoot() {
 
 void power() { roundStack[0] = std::pow(roundStack[0], registers[0]); }
 
-void xyChange() {
+void swapXY() {
     T tmp = registers[0];
     registers[0]  = roundStack[0];
     roundStack[0] = tmp;
 }
 
-void Dump();
+void dump();
+
+void resetRoundStack() { for (auto itb = roundStack.begin(), ite = roundStack.end(); itb != ite; ++itb) *itb = 0; }
+void resetRegisters()  { for (auto itb = registers.begin(),  ite = registers.end();  itb != ite; ++itb) *itb = 0; }
+void reset() { resetRoundStack(); resetRegisters(); } 
 
 //private:
 
@@ -91,24 +95,3 @@ std::array<T, 7> roundStack{};
 std::array<T, 7> registers{};
 
 };
-
-
-/*template<typename T>
-void Memory<T>::Dump() {
-    std::cout << "----------------------------------------" << std::endl;
-
-    std::cout << "x = " << std::setprecision(10) << roundStack[0] << std::endl;
-    std::cout << "y = " << std::setprecision(10) << registers[0] << std::endl;
-
-    std::cout << "roundStack: " << std::endl;
-    for (auto&& i : roundStack) {
-        std::cout << std::setprecision(10) << i << std::endl;
-    }
-
-    std::cout << "registers: " << std::endl;
-    for (auto&& i : registers) {
-        std::cout << std::setprecision(10) << i << std::endl;
-    }
-
-    std::cout << "----------------------------------------" << std::endl;
-}*/
