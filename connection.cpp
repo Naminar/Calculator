@@ -201,7 +201,7 @@ void Connection::command_handler()
             */
         };
     }
-    else if ( button_hash % 10 == 6)
+    else if ( button_hash % 10 == 6 )
     {
         num_button_flag = false;
 
@@ -270,9 +270,67 @@ void Connection::command_handler()
     
         //create_tablo_information();
     }
+    else if ( mode_program_execution == true && button_hash == 48 ) //  B/O
+    {
+        program_mem.set_position( 0);
+    }
+    else if ( mode_program_execution == true && button_hash == 78 ) // C/P
+    {
+        program_execution_handler();
+    }
 
     create_tablo_information(error_key, error_line);
 
+}
+
+void Connection::program_execution_handler()
+{
+    auto position_ = program_mem.get_position();
+    
+    while ( program_mem.program_memory[position_] != END_OF_PROGRAM )
+    {
+        switch ( program_mem.program_memory[position_] )
+        {
+            case 49:
+            {
+                program_mem.condition( &(mem.roundStack[0]));
+
+                break;
+            }
+
+            case 59:
+            {
+                program_mem.condition( &(mem.roundStack[0]));
+                
+                break;
+            }
+
+            case 69:
+            {
+                program_mem.condition( &(mem.roundStack[0]));
+                
+                break;
+            }
+
+            case 79:
+            {
+                program_mem.condition( &(mem.roundStack[0]));
+                
+                break;
+            }
+
+            default:
+            {
+                button_hash = program_mem.program_memory[position_];
+                
+                command_handler();
+
+                button_hash = 0;
+
+                program_mem.next_cell();    
+            }
+        };        
+    }
 }
 
 void Connection::add_program_handler()
@@ -297,7 +355,9 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     }
 
     if ( str_here == true )
-        screen_data.ball[0] = error_line;
+        screen_data.tablo = error_line;
+    else
+        screen_data.tablo = screen_data.ball[0];
     
     for ( size_t ind = 0; ind < 36; ind++ )
     {                    
@@ -355,7 +415,7 @@ void Connection::get_button_num(int button_index)
     else if ( button_index == RP && mode_pressed == true )
     {
         mode_enter_progarm = true;
-
+    //--------------------------------
         std::cout << "enter_progrmm"<< std::endl;
 
     //------ all flags and hash ------
@@ -367,6 +427,20 @@ void Connection::get_button_num(int button_index)
         mode_pressed = false;
 
         comma_button_flag = false;
+    }
+    else if ( button_index == RR && mode_pressed == true )
+    {
+        mode_program_execution = true;
+    //--------------------------------
+        button_hash = 0;
+        
+        mode_pressed = false;
+
+        comma_button_flag = false;
+
+        num_button_flag = false;
+
+        mode_enter_progarm = false;
     }
     else if ( button_index == ON_OFF_BUTTON )
     {
@@ -450,7 +524,22 @@ void Connection::get_button_num(int button_index)
         {
             add_program_handler();
 
-            create_tablo_information();
+            auto position_ = program_mem.get_position();
+            
+            std::string prev_code_on_tablo = std::to_string( program_mem.program_memory[ position_]);
+
+            if ( position_ > 0 && position_ < 2)
+            {
+                prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1]);
+            }
+            else if ( position_ > 1 )
+            {
+                prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1])
+                                      +
+                                      " " + std::to_string( program_mem.program_memory[ position_ - 2]);
+            }
+
+            create_tablo_information( true, prev_code_on_tablo);
 
             if ( button_hash == CP ) // end of enter mode with button C/P
             {
@@ -474,7 +563,7 @@ void Connection::get_button_num(int button_index)
 
 
 
-/*
+
 int main()
 {
     Connection x;
@@ -523,4 +612,4 @@ int main()
 
     return 0;
 }
-*/
+

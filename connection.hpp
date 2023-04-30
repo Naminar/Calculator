@@ -4,14 +4,19 @@
 #include "program.hpp"
 
 #define RP 100
+#define RR 101
+
 #define CP 78
 #define P 1
 #define F 2
 #define ON_OFF_BUTTON 102
+#define END_OF_PROGRAM 78
+
 struct Data
 {
     //std::string screen_tablo = "0";
-
+    std::string tablo;
+    
     std::string proga[36];
 
     std::string registers[7];
@@ -29,6 +34,7 @@ class Connection
     bool comma_button_flag = false;
 
     bool mode_enter_progarm = false;
+    bool mode_program_execution = false;
     //int (**called_function)(struct memory) = nullptr;
 
     public:
@@ -48,5 +54,9 @@ class Connection
     void create_tablo_information(bool str_here = false, std::string error_line = "0");
 
     void add_program_handler(void);
+
+    private:
+
+    void program_execution_handler(void);
 };
 
