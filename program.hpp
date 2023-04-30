@@ -21,6 +21,7 @@ public:
 	void next_cell() { position++; } // подвинуть на один вперед
 	void previous_cell() { position--; } // подвинуть на один назад
 	void condition(auto x_register_ptr); // условные переходы
+	void clear() { for(int i = 0; i < 36; i++) program_memory[i] = 0; } // обнулить массив
 	/*
 	class Iterator
 	{
