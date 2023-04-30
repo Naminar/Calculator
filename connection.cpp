@@ -329,7 +329,9 @@ void Connection::program_execution_handler()
 
                 program_mem.next_cell();    
             }
-        };        
+        };
+
+        position_ = program_mem.get_position();        
     }
 }
 
@@ -524,7 +526,7 @@ void Connection::get_button_num(int button_index)
         {
             add_program_handler();
 
-            auto position_ = program_mem.get_position();
+            auto position_ = program_mem.get_position() - 1;
             
             std::string prev_code_on_tablo = std::to_string( program_mem.program_memory[ position_]);
 
