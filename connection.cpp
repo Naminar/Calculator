@@ -41,8 +41,12 @@ void Connection::command_handler()
                 break;
 
             case 1:
-                mem.ln(); // ln
+            {
+                try {  mem.ln(); }// ln
+                catch( ... ) { error_key = true; error_line = "ERROR"; }
+
                 break;
+            }
 
             case 2:
                 mem.pi(); // pi
@@ -136,7 +140,7 @@ void Connection::command_handler()
             case 4:
             {
                 try { mem.reciprocal(); }
-                catch( ... ) { error_key = true; error_line = "ERROR - division by 0";}//screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
+                catch( ... ) { error_key = true; error_line = "ERROR"; }//screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
 
                 break;
             }
@@ -152,7 +156,8 @@ void Connection::command_handler()
             case 6:
             {
                 //create_tablo_information();// sqrt
-                mem.squareRoot();
+                try { mem.squareRoot(); }
+                catch( ... ) { error_key = true; error_line = "ERROR"; }
                 
                 //create_tablo_information();
                 
@@ -206,8 +211,12 @@ void Connection::command_handler()
                 break;
 
             case 3:
-                 mem.divide();
+            {
+                try { mem.divide(); }
+                catch( ... ) { error_key = true; error_line = "ERROR"; }
+                
                 break;
+            }
 
             case 4:
                 // comma
@@ -287,7 +296,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
 
 
-    std::cout << "--------registers-------- \n YYY:" << std::endl;
+    /*std::cout << "--------registers-------- \n YYY:" << std::endl;
 
     for ( size_t ind = 0; ind < 7; ind++ )
     {
@@ -314,7 +323,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
     }
 
-    std::cout << std::endl;
+    std::cout << std::endl;*/
 }
 
 void Connection::get_button_num(int button_index)
@@ -437,7 +446,7 @@ void Connection::get_button_num(int button_index)
     }
 }
 
-/*
+
 
 int main()
 {
@@ -487,5 +496,3 @@ int main()
 
     return 0;
 }
-
-*/
