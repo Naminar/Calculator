@@ -158,7 +158,7 @@ void Connection::command_handler()
                 //create_tablo_information();// sqrt
                 try { mem.squareRoot(); }
                 catch( ... ) { error_key = true; error_line = "ERROR"; }
-                
+
                 //create_tablo_information();
                 
                 break;
@@ -357,6 +357,21 @@ void Connection::get_button_num(int button_index)
         mode_pressed = false;
 
         comma_button_flag = false;
+    }
+    else if ( button_index == ON_OFF_BUTTON )
+    {
+        mode_enter_progarm = false;
+        
+        button_hash = 0;
+
+        num_button_flag = false;
+
+        mode_pressed = false;
+
+        comma_button_flag = false;
+
+        mem.reset();
+        //program_mem.();
     }
     else
     {

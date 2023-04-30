@@ -7,6 +7,7 @@
 #define CP 78
 #define P 1
 #define F 2
+#define ON_OFF_BUTTON 102
 struct Data
 {
     //std::string screen_tablo = "0";
