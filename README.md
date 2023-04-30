@@ -1,4 +1,4 @@
-# Calculator
+# Calculator (updating nowadays)
  Calculator Emulator. Semester project at MIPT.
  
 ### Кому что необходимо для связи:
