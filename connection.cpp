@@ -230,6 +230,7 @@ void Connection::command_handler()
             case 4:
                 // comma
                 comma_button_flag = true;
+                num_button_flag = true;
                 break;
 
             case 5:
