@@ -444,8 +444,8 @@ void Connection::get_button_num(int button_index)
 
         mode_enter_progarm = false;
     }
-    else if ( mode_enter_progarm = true 
-              && ( button_hash == CP || button_hash == END_SUBPROGRAM) 
+    else if ( mode_enter_progarm == true 
+              && ( button_hash == END_OF_PROGRAM || button_hash == END_SUBPROGRAM) 
               && button_index != BEGIN_SUBPROGRAM
             )
     {
@@ -601,12 +601,12 @@ std::string Connection::create_tablo_string()
 }
 
 
-
+/*/
 int main()
 {
     Connection x;
 
-    x.get_button_num(F);
+    /*x.get_button_num(F);
     x.get_button_num(48);
 
     x.get_button_num(P);
@@ -650,4 +650,4 @@ int main()
 
     return 0;
 }
-
+/*/
