@@ -463,6 +463,7 @@ void Connection::get_button_num(int button_index)
 
 
 
+/*
 int main()
 {
     Connection x;
@@ -511,3 +512,4 @@ int main()
 
     return 0;
 }
+*/
