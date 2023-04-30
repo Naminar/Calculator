@@ -56,16 +56,16 @@ void Connection::command_handler()
                  mem.expPower(); // e^x
                 break;
 
-            /*
+            
             
             case 4:
-                create_tablo_information();
+                mem.leftRotate();
                 break;
 
             case 5:
-                create_tablo_information();
+                mem.rightRotate();
                 break;
-
+            /*
             case 6:
                 create_tablo_information();
                 break;
