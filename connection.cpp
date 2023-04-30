@@ -107,7 +107,9 @@ void Connection::command_handler()
 
         if ( num_button_flag == false ) 
         {
-            mem.storeDigit( 0, false);        
+            mem.storeDigit( 0, true);
+            mem.storeDigit( 0, false);
+
             num_button_flag = true;
             comma_button_flag = false;
         }
