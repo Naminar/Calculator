@@ -11,6 +11,8 @@
 #define F 2
 #define ON_OFF_BUTTON 102
 #define END_OF_PROGRAM 78
+#define BEGIN_SUBPROGRAM 68
+#define END_SUBPROGRAM 48
 
 struct Data
 {
@@ -56,6 +58,8 @@ class Connection
     void add_program_handler(void);
 
     private:
+
+    std::string create_tablo_string(void);
 
     void program_execution_handler(void);
 };

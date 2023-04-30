@@ -444,6 +444,17 @@ void Connection::get_button_num(int button_index)
 
         mode_enter_progarm = false;
     }
+    else if ( mode_enter_progarm = true 
+              && ( button_hash == CP || button_hash == END_SUBPROGRAM) 
+              && button_index != BEGIN_SUBPROGRAM
+            )
+    {
+        mode_enter_progarm = false;
+
+        button_hash = 0;
+
+        get_button_num( button_index);
+    }
     else if ( button_index == ON_OFF_BUTTON )
     {
         mode_enter_progarm = false;
@@ -456,8 +467,12 @@ void Connection::get_button_num(int button_index)
 
         comma_button_flag = false;
 
+        bool mode_program_execution = false;
+
         mem.reset();
         program_mem.clear();
+
+        program_mem.set_position( 0);
         //program_mem.();
     }
     else
@@ -525,7 +540,8 @@ void Connection::get_button_num(int button_index)
         if ( mode_enter_progarm == true )
         {
             add_program_handler();
-
+            
+            /*
             auto position_ = program_mem.get_position() - 1;
             
             std::string prev_code_on_tablo = std::to_string( program_mem.program_memory[ position_]);
@@ -540,16 +556,17 @@ void Connection::get_button_num(int button_index)
                                       +
                                       " " + std::to_string( program_mem.program_memory[ position_ - 2]);
             }
+            */
 
-            create_tablo_information( true, prev_code_on_tablo);
+            create_tablo_information( true, create_tablo_string());//prev_code_on_tablo);
 
-            if ( button_hash == CP ) // end of enter mode with button C/P
+            if ( button_hash == CP || button_hash == END_SUBPROGRAM ) // end of enter mode with button C/P
             {
                 std::cout << "end of program enter" << std::endl;
                 
-                mode_enter_progarm = false;
+                //mode_enter_progarm = false;
                 
-                button_hash = 0;
+                //button_hash = 0;
 
                 num_button_flag = false;
 
@@ -563,8 +580,28 @@ void Connection::get_button_num(int button_index)
     }
 }
 
+std::string Connection::create_tablo_string()
+{
+    auto position_ = program_mem.get_position() - 1;
+            
+    std::string prev_code_on_tablo = std::to_string( program_mem.program_memory[ position_]);
 
-/*
+    if ( position_ > 0 && position_ < 2)
+    {
+        prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1]);
+    }
+    else if ( position_ > 1 )
+    {
+        prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1])
+                                +
+                                " " + std::to_string( program_mem.program_memory[ position_ - 2]);
+    }
+    
+    return prev_code_on_tablo;
+}
+
+
+
 int main()
 {
     Connection x;
@@ -614,4 +651,3 @@ int main()
     return 0;
 }
 
-*/
