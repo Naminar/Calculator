@@ -103,8 +103,14 @@ void Connection::command_handler()
 
         //screen_data.screen_tablo = mem.roundStack[0];
 
-        num_button_flag = true;
+        //num_button_flag = true;
 
+        if ( num_button_flag = false )
+        {
+            mem.storeDigit( 0, false);        
+
+            num_button_flag = true;
+        }
         mem.storeDigit( button_hash / 10, comma_button_flag);
 
         //comma_button_flag
