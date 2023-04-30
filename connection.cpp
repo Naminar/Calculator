@@ -105,14 +105,15 @@ void Connection::command_handler()
 
         //num_button_flag = true;
 
-        if ( num_button_flag = false )
+        if ( num_button_flag == false ) 
         {
             mem.storeDigit( 0, false);        
-
             num_button_flag = true;
+            comma_button_flag = false;
         }
-        mem.storeDigit( button_hash / 10, comma_button_flag);
 
+        mem.storeDigit( button_hash / 10, comma_button_flag);
+        
         //comma_button_flag
 
         //create_tablo_information();
