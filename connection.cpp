@@ -377,6 +377,7 @@ void Connection::get_button_num(int button_index)
         comma_button_flag = false;
 
         mem.reset();
+        program_mem.clear();
         //program_mem.();
     }
     else
