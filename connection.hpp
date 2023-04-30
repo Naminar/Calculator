@@ -13,9 +13,9 @@ struct Data
 
     std::string proga[36];
 
-    std::string registers[8];
+    std::string registers[7];
 
-    std::string ball[8];
+    std::string ball[7];
 
     std::string program_memory[36];
 };
