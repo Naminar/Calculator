@@ -5,7 +5,8 @@
 
 #define RP 100
 #define CP 78
-
+#define P 1
+#define F 2
 struct Data
 {
     //std::string screen_tablo = "0";

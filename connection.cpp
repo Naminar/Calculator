@@ -318,14 +318,14 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
 void Connection::get_button_num(int button_index)
 {
-    if (button_index == 'P'
+    if (button_index == P
         ||
-        button_index == 'F'
+        button_index == F
        )
     {
         //button_hash = button_index;
 
-        if ( button_index == 'P' )
+        if ( button_index == P )
             button_hash = 1;
         else
             button_hash = 2;
@@ -440,16 +440,16 @@ int main()
 {
     Connection x;
 
-    x.get_button_num('F');
+    x.get_button_num(F);
     x.get_button_num(48);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(48);
 
-    x.get_button_num('F');
+    x.get_button_num(F);
     x.get_button_num(46);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(46);
 
     x.get_button_num(76);
@@ -459,21 +459,21 @@ int main()
     x.get_button_num(46);
     x.get_button_num(34);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(86);
 
     x.get_button_num(16);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(RP);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(6);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(6);
 
-    x.get_button_num('P');
+    x.get_button_num(P);
     x.get_button_num(6);
 
     x.get_button_num(CP);
