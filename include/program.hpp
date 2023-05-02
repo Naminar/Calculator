@@ -48,46 +48,59 @@ public:
 
 void Program::condition(auto x_register_ptr)
 {
+	std::cout << "Condition" << std::endl;
 	switch ( program_memory[position] / 10)
 	{
 		case 4:
 		{
+			std::cout << "case 49: >= 0" << std::endl;
 			if (*x_register_ptr >= 0)
 			{
+				std::cout << "condition 49 met" << std::endl;
 				position += 2;
 				break;
 			}
-			position = program_memory[position + 1];
+			std::cout << "condition 49 is not met, jumping" << std::endl;
+			position = program_memory[position + 1] - 1;
 			break;
 		}
 		case 5:
 		{
+			std::cout << "case 59: = 0" << std::endl;
 			if (*x_register_ptr == 0)
 			{
+				std::cout << "condition 59 met" << std::endl;
 				position += 2;
 				break;
 			}
-			position = program_memory[position + 1];
+			std::cout << "condition 59 is not met, jumping" << std::endl;
+			position = program_memory[position + 1] - 1;
 			break;
 		}
 		case 6:
 		{
+			std::cout << "case 69: < 0" << std::endl;
 			if (*x_register_ptr < 0)
 			{
+				std::cout << "condition 69 met" << std::endl;
 				position += 2;
 				break;
 			}
-			position = program_memory[position + 1];
+			std::cout << "condition 69 is not met, jumping" << std::endl;
+			position = program_memory[position + 1] - 1;
 			break;
 		}
 		case 7:
 		{
+			std::cout << "case 79: != 0" << std::endl;
 			if (*x_register_ptr != 0)
 			{
+				std::cout << "condition 79 met" << std::endl;
 				position += 2;
 				break;
 			}
-			position = program_memory[position + 1];
+			std::cout << "condition 79 is not met, jumping" << std::endl;
+			position = program_memory[position + 1] - 1;
 			break;
 		}
 		default:
