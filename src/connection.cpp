@@ -304,11 +304,15 @@ void Connection::program_execution_handler()
     
     while ( program_mem.program_memory[position_] != END_OF_PROGRAM )
     {
+        
+        std::cout << program_mem.program_memory[position_] << std::endl;
+        
         switch ( program_mem.program_memory[position_] )
         {
             
             case 39:
             {
+                
                 program_mem.next_cell();
 
                 break;
