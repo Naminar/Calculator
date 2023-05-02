@@ -306,6 +306,15 @@ void Connection::program_execution_handler()
     {
         switch ( program_mem.program_memory[position_] )
         {
+            
+            case 39:
+            {
+                program_mem.next_cell();
+
+                break;
+            }
+            
+            
             case 49:
             {
                 program_mem.condition( &(mem.roundStack[0]));
