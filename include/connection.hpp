@@ -14,6 +14,8 @@
 #define BEGIN_SUBPROGRAM 68
 #define END_SUBPROGRAM 48
 
+#define START_EXE_PROGRAM 78
+#define RESET_INDEX_OF_PROGRAM 48
 struct Data
 {
     //std::string screen_tablo = "0";
@@ -62,5 +64,7 @@ class Connection
     std::string create_tablo_string(void);
 
     void program_execution_handler(void);
+
+    void reset_all_flags(void);
 };
 

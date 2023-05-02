@@ -270,17 +270,32 @@ void Connection::command_handler()
     
         //create_tablo_information();
     }
-    else if ( mode_program_execution == true && button_hash == 48 ) //  B/O
+    else if ( mode_program_execution == true && button_hash == RESET_INDEX_OF_PROGRAM ) //  B/O
     {
         program_mem.set_position( 0);
     }
-    else if ( mode_program_execution == true && button_hash == 78 ) // C/P
+    else if ( mode_program_execution == true && button_hash == START_EXE_PROGRAM ) // C/P
     {
         program_execution_handler();
+
+        program_mem.set_position(0);
+
+        reset_all_flags();
     }
 
     create_tablo_information(error_key, error_line);
 
+}
+
+void Connection::reset_all_flags()
+{
+    int button_hash         = 0;
+    bool mode_pressed       = false;
+    bool num_button_flag    = false; 
+    bool comma_button_flag  = false;
+
+    bool mode_enter_progarm = false;
+    bool mode_program_execution = false;
 }
 
 void Connection::program_execution_handler()
