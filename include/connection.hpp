@@ -16,6 +16,9 @@
 
 #define START_EXE_PROGRAM 78
 #define RESET_INDEX_OF_PROGRAM 48
+
+#define CX 76
+
 struct Data
 {
     //std::string screen_tablo = "0";

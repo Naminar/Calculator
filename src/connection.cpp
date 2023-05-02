@@ -429,6 +429,17 @@ void Connection::get_button_num(int button_index)
 
         mode_pressed = true;
     }
+    else if ( button_index == 76 )
+    {
+        reset_all_flags();
+
+        mem.reset();
+        program_mem.clear();
+
+        program_mem.set_position( 0);
+        
+        create_tablo_information();    
+    }
     else if ( button_index == RP && mode_pressed == true )
     {
         mode_enter_progarm = true;
