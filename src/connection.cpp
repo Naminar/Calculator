@@ -305,7 +305,7 @@ void Connection::program_execution_handler()
     while ( program_mem.program_memory[position_] != END_OF_PROGRAM )
     {
         
-        std::cout << (int) program_mem.program_memory[position_] << std::endl;
+        //std::cout << (int) program_mem.program_memory[position_] << std::endl;
         
         switch ( program_mem.program_memory[position_] )
         {
@@ -457,7 +457,7 @@ void Connection::get_button_num(int button_index)
     {
         mode_enter_progarm = true;
     //--------------------------------
-        std::cout << "enter_progrmm"<< std::endl;
+        //std::cout << "enter_progrmm"<< std::endl;
 
     //------ all flags and hash ------
         
@@ -601,7 +601,7 @@ void Connection::get_button_num(int button_index)
 
             if ( button_hash == CP || button_hash == END_SUBPROGRAM ) // end of enter mode with button C/P
             {
-                std::cout << "end of program enter" << std::endl;
+                //std::cout << "end of program enter" << std::endl;
                 
                 //mode_enter_progarm = false;
                 
