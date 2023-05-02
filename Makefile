@@ -5,10 +5,10 @@ main: connection.o memory.o
 	g++ connection.o  memory.o -std=c++20 -o main
 
 connection.o: 
-	g++ -c connection.cpp connection.hpp program.hpp
+	g++ -c src/connection.cpp include/connection.hpp include/program.hpp
 
 memory.o:
-	g++ -c memory.cpp -std=c++20
+	g++ -c src/memory.cpp -std=c++20
 
 clean: 
 	rm -rf *.o main
