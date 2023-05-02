@@ -305,7 +305,7 @@ void Connection::program_execution_handler()
     while ( program_mem.program_memory[position_] != END_OF_PROGRAM )
     {
         
-        std::cout << program_mem.program_memory[position_] << std::endl;
+        std::cout << (int) program_mem.program_memory[position_] << std::endl;
         
         switch ( program_mem.program_memory[position_] )
         {
