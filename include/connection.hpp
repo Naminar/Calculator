@@ -18,6 +18,7 @@
 #define RESET_INDEX_OF_PROGRAM 48
 
 #define CX 76
+#define NUMBER_OF_REGISTERS 8
 
 struct Data
 {

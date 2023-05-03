@@ -15,7 +15,7 @@ void Connection::command_handler()
     {
         // command 'p'to registers
         // DEBUG TAG
-        if ( button_hash / 10 > 0)
+        if ( button_hash / 10 > 0 && ( button_hash / 10 <= NUMBER_OF_REGISTERS ) )
             mem.storeRegister( button_hash / 10 - 1);
 
         num_button_flag = false;
@@ -25,7 +25,7 @@ void Connection::command_handler()
     else if ( button_hash % 10 == 2 )
     {
         // command 'f' to x from registers
-        if ( button_hash / 10 > 0)
+        if ( button_hash / 10 > 0 && ( button_hash / 10 <= NUMBER_OF_REGISTERS ) )
             mem.loadRegister( button_hash / 10 - 1);
 
         num_button_flag = false;
