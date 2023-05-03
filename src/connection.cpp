@@ -444,12 +444,15 @@ void Connection::get_button_num(int button_index)
     }
     else if ( button_index == 76 )
     {
-        reset_all_flags();
+        /*reset_all_flags();
 
         mem.reset();
         program_mem.clear();
 
-        program_mem.set_position( 0);
+        program_mem.set_position( 0); */
+
+        mem.storeDigit( 0, true);
+        mem.storeDigit( 0, false);
         
         create_tablo_information();    
     }
