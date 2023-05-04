@@ -301,8 +301,13 @@ void Connection::reset_all_flags()
 void Connection::program_execution_handler()
 {
     auto position_ = program_mem.get_position();
+
+    bool exit_flag = false;
     
-    while ( program_mem.program_memory[position_] != END_OF_PROGRAM )
+    while ( program_mem.program_memory[position_] != END_OF_PROGRAM 
+            && 
+            exit_flag == false
+          )
     {
         
         //std::cout << (int) program_mem.program_memory[position_] << std::endl;
@@ -321,28 +326,40 @@ void Connection::program_execution_handler()
             
             case 49:
             {
-                program_mem.condition( &(mem.roundStack[0]));
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
 
                 break;
             }
 
             case 59:
             {
-                program_mem.condition( &(mem.roundStack[0]));
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
                 
                 break;
             }
 
             case 69:
             {
-                program_mem.condition( &(mem.roundStack[0]));
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
                 
                 break;
             }
 
             case 79:
             {
-                program_mem.condition( &(mem.roundStack[0]));
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
                 
                 break;
             }
@@ -360,6 +377,11 @@ void Connection::program_execution_handler()
         };
 
         position_ = program_mem.get_position();        
+    }
+
+    if ( exit_flag == true )
+    {
+        create_tablo_information( true, "ERROR");
     }
 }
 
