@@ -2,9 +2,15 @@
 #include <cmath>
 #include <algorithm>
 #include <array>
-#include <numbers>
 #include <iomanip>
 #include <stdexcept>
+
+bool isEqual(double num1, double num2) {
+    const double epsilon = 10e-5;
+    return ((num1 - num2) < epsilon);
+}
+
+bool isZero(double num) { return isEqual(num, 0); }
 
 template<typename T = double>
 class Memory final {
@@ -31,6 +37,8 @@ void storeDigit(T number, bool isFloat = false) {
     frac = isFloat;
 }
 
+void storePower(int number) { roundStack[0] *= std::pow(10, number); }
+
 // "P" instructions:
 
 void storeRegister(int place) { registers[place] = roundStack[0]; }
@@ -39,15 +47,16 @@ void loadRegister(int place) { roundStack[0] = registers[place]; }
 void rightRotate() { std::rotate(roundStack.rbegin(), roundStack.rbegin() + 1, roundStack.rend()); }
 void leftRotate()  { std::rotate(roundStack.begin(), roundStack.begin() + 1, roundStack.end()); }
 
-void sinus()    { roundStack[0] = sin(roundStack[0]); }
-void cosinus()  { roundStack[0] = cos(roundStack[0]); }
+void sinus()   { isZero(sin(roundStack[0])) ? roundStack[0] = 0 : roundStack[0] = sin(roundStack[0]); }
+void cosinus() { isZero(cos(roundStack[0])) ? roundStack[0] = 0 : roundStack[0] = cos(roundStack[0]); }
+
 void ln()       {
     if (roundStack[0] <= 0) throw std::invalid_argument("ln of not positive number");
     roundStack[0] = log(roundStack[0]);
 }
 
-void pi()       { roundStack[0] = 3,1415926; }
-void expPower() { roundStack[0] = std::exp2f(roundStack[0]); }
+void pi()       { roundStack[0] = 3.1415926; }
+void expPower() { roundStack[0] = std::exp2f(roundStack[0]); } // -
 
 //
 void plus()   { roundStack[0] = roundStack[0] + registers[0]; }
@@ -95,7 +104,6 @@ std::array<T, 7> roundStack{};
 std::array<T, 7> registers{};
 
 };
-
 
 struct Number {
 
@@ -174,17 +182,21 @@ Number standard(double num) {
     Number tmp; 
     tmp.body = num;
 
-    //std::cout << digitCount(tmp.body) << std::endl;
+    std::cout << digitCount(tmp.body) << std::endl;
 
     int counter = digitCount(tmp.body);
     if (counter > 8) {
-        int powSign = 0;
-        if (tmp.body > 10) powSign = 1;
-        else if (num < 1)  powSign = -1;
-
-        while (int(tmp.body) / 10 != 0) {
-            tmp.body *= std::pow(10, -powSign);
-            tmp.power += powSign;
+        if (tmp.body > 10) {
+            while (int(tmp.body) / 10 != 0) {
+                tmp.body *= std::pow(10, -1);
+                tmp.power += 1;
+            }
+        }
+        else if (tmp.body < 1) {
+            while (int(tmp.body) == 0) {
+                tmp.body *= std::pow(10, 1);
+                tmp.power -= 1;
+            }
         }
     }
     return tmp;
