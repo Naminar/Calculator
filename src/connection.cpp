@@ -1,6 +1,7 @@
 
 #include "../include/connection.hpp"
 
+
 void Connection::command_handler()
 {
     /*std::cout << programm_index << std::endl;
@@ -13,6 +14,10 @@ void Connection::command_handler()
 
     if ( button_hash % 10 != 4 && degree_flag == true )
     {
+        mem.storePower( degree_hash );
+
+        //degree_hash = 0;
+        
         degree_flag = false;
     }
 
@@ -438,6 +443,12 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
     if ( str_here == true )
         screen_data.tablo = error_line;
+    else if ( degree_flag = true )
+    {
+        //Number number_representation = mem.standard( mem.roundStack[0]);
+        
+        screen_data.tablo = screen_data.ball[0] + std::to_string( degree_hash);
+    }
     else
         screen_data.tablo = screen_data.ball[0];
     
@@ -510,7 +521,7 @@ void Connection::get_button_num(int button_index)
     }
     else if ( button_index == VP && num_button_flag == true )
     {
-        button hash = 0;
+        button_hash = 0;
 
         num_button_flag = false;
 

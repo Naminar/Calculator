@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 // template<typename T = double>
-#define precision 0.00001
+const double precision = 0.00001;
 
 class Program
 {

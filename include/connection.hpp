@@ -1,7 +1,9 @@
 
 #include <iostream>
 #include <string>
+#include "memory.hpp"
 #include "program.hpp"
+
 
 #define RP 100
 #define RR 101
