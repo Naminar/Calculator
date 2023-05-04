@@ -11,6 +11,11 @@ void Connection::command_handler()
 
     std::string error_line;
 
+    if ( button_hash % 10 != 4 && degree_flag == true )
+    {
+        degree_flag = false;
+    }
+
     if ( button_hash % 10 == 1 )
     {
         // command 'p'to registers
@@ -19,6 +24,7 @@ void Connection::command_handler()
             mem.storeRegister( button_hash / 10 - 1);
 
         num_button_flag = false;
+        degree_flag     = false;
 
         //create_tablo_information();
     }
@@ -29,11 +35,14 @@ void Connection::command_handler()
             mem.loadRegister( button_hash / 10 - 1);
 
         num_button_flag = false;
+        degree_flag     = false;
 
         //create_tablo_information();
     }
     else if ( button_hash % 10 == 3 )
     {
+        degree_flag     = false;
+        
         switch ( button_hash / 10)
         {
             case 0:
@@ -104,17 +113,36 @@ void Connection::command_handler()
         //screen_data.screen_tablo = mem.roundStack[0];
 
         //num_button_flag = true;
-
-        if ( num_button_flag == false ) 
+        if ( degree_flag == true )
         {
-            mem.storeDigit( 0, true);
-            mem.storeDigit( 0, false);
+            if ( degree_hash < 10 && degree_hash >= 0 )
+            {
+                degree_hash *= 10;
 
-            num_button_flag = true;
-            comma_button_flag = false;
+                degree_hash += button_hash / 10;
+            }
+            else if ( degree_hash > -10 && degree_hash <= 0 )
+            {
+                degree_hash *= 10;
+
+                degree_hash -= button_hash / 10;
+            }
+
+            // else nothing
         }
+        else
+        {
+            if ( num_button_flag == false ) 
+            {
+                mem.storeDigit( 0, true);
+                mem.storeDigit( 0, false);
 
-        mem.storeDigit( button_hash / 10, comma_button_flag);
+                num_button_flag = true;
+                comma_button_flag = false;
+            }
+
+            mem.storeDigit( button_hash / 10, comma_button_flag);
+        }
         
         //comma_button_flag
 
@@ -123,6 +151,7 @@ void Connection::command_handler()
     else if ( button_hash % 10 == 5 )
     {
         num_button_flag = false;
+        degree_flag     = false;
 
         switch ( button_hash / 10)
         {
@@ -204,6 +233,7 @@ void Connection::command_handler()
     else if ( button_hash % 10 == 6 )
     {
         num_button_flag = false;
+        degree_flag     = false;
 
         switch ( button_hash / 10)
         {
@@ -477,6 +507,15 @@ void Connection::get_button_num(int button_index)
         mem.storeDigit( 0, false);
         
         create_tablo_information();    
+    }
+    else if ( button_index == VP && num_button_flag == true )
+    {
+        button hash = 0;
+
+        num_button_flag = false;
+
+        degree_flag = true;
+        degree_hash = 0;
     }
     else if ( button_index == RP && mode_pressed == true )
     {

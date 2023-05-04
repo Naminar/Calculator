@@ -19,6 +19,7 @@
 
 #define CX 76
 #define NUMBER_OF_REGISTERS 8
+#define VP 66
 
 struct Data
 {
@@ -36,7 +37,10 @@ struct Data
 
 class Connection
 {
-    int button_hash   = 0;
+    int button_hash   = 0,
+        degree_hash   = 0;
+        
+    bool degree_flag = false;
     bool mode_pressed = false;
     bool num_button_flag = false; // the last tap was number button
     bool comma_button_flag = false;
