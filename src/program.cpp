@@ -1,4 +1,4 @@
-#include "program.hpp"
+#include "../include/program.hpp"
 
 void Program::add(unsigned char code)  // запись кода в массив
 { 
