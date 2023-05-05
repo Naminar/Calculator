@@ -450,7 +450,23 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         screen_data.tablo = screen_data.ball[0] + std::to_string( degree_hash);
     }
     else
-        screen_data.tablo = screen_data.ball[0];
+    {
+         Number number_representation = standard( mem.roundStack[0]);
+         
+         if ( number_representation.power == 0)
+            screen_data.tablo = screen_data.ball[0];
+        else
+        {
+            screen_data.tablo = std::to_string( number_representation.body);
+            
+            if ( number_representation.power > 0 )
+                screen_data.tablo = screen_data.tablo + " +";        
+            else
+                screen_data.tablo = screen_data.tablo + " -";
+                                         
+            screen_data.tablo = screen_data.tablo + std::to_string( number_representation.power);
+        }
+    }
     
     for ( size_t ind = 0; ind < 36; ind++ )
     {                    
