@@ -1,5 +1,49 @@
 #include "../include/memory.hpp"
 
+bool isEqual(double num1, double num2) {
+    const double epsilon = 10e-5;
+    return ((num1 - num2) < epsilon);
+}
+
+bool isZero(double num) { return isEqual(num, 0); }
+
+
+
+int digitCount(double num) {
+    int body = int(num);
+    
+    int counter = 0;
+    while (body != 0) { ++counter; body /= 10;}
+    while (num - int(num) != 0) { ++counter; num *= 10; }
+    return counter;
+}
+
+Number standard(double num) {
+    Number tmp; 
+    tmp.body = num;
+
+    std::cout << digitCount(tmp.body) << std::endl;
+
+    int counter = digitCount(tmp.body);
+    if (counter > 8) {
+        if (tmp.body > 10) {
+            while (int(tmp.body) / 10 != 0) {
+                tmp.body *= std::pow(10, -1);
+                tmp.power += 1;
+            }
+        }
+        else if (tmp.body < 1) {
+            while (int(tmp.body) == 0) {
+                tmp.body *= std::pow(10, 1);
+                tmp.power -= 1;
+            }
+        }
+    }
+    return tmp;
+}
+
+
+
 template<typename T>
 void Memory<T>::dump() {
     std::cout << "----------------------------------------" << std::endl;
