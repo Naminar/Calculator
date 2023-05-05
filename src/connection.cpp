@@ -443,7 +443,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
     if ( str_here == true )
         screen_data.tablo = error_line;
-    else if ( degree_flag = true )
+    else if ( degree_flag == true )
     {
         //Number number_representation = mem.standard( mem.roundStack[0]);
         
