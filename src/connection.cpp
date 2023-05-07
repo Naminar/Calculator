@@ -425,6 +425,25 @@ void Connection::add_program_handler()
     program_mem.add(button_hash);
 }
 
+void create_number_string(std::string& screen_string, const std::string& default_string, auto number_to_convert)
+{
+    Number number_representation = standard( number_to_convert);
+         
+    if ( number_representation.power == 0 )
+        screen_string = default_string;
+    else
+    {
+        screen_string = std::to_string( number_representation.body);
+        
+        if ( number_representation.power > 0 )
+            screen_string = screen_string + " +";        
+        else
+            screen_string = screen_string + " -";
+                                        
+        screen_string = screen_string + std::to_string( number_representation.power);
+    }
+}
+
 void Connection::create_tablo_information(bool str_here, std::string error_line)
 {
     //mem.roundStack[0];
@@ -451,6 +470,9 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     }
     else
     {
+        create_number_string( screen_data.tablo, screen_data.ball[0], mem.roundStack[0]);
+        
+        /*
          Number number_representation = standard( mem.roundStack[0]);
          
          if ( number_representation.power == 0)
@@ -466,6 +488,9 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
                                          
             screen_data.tablo = screen_data.tablo + std::to_string( number_representation.power);
         }
+        */
+
+
     }
     
     for ( size_t ind = 0; ind < 36; ind++ )
@@ -473,36 +498,6 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
             screen_data.program_memory[ind] = std::to_string( program_mem.program_memory[ind]);
     }
 
-
-
-    /*std::cout << "--------registers-------- \n YYY:" << std::endl;
-
-    for ( size_t ind = 0; ind < 7; ind++ )
-    {
-        std::cout << screen_data.registers[ind] << std::endl;
-
-    }
-
-    std::cout << "--------ball-------- \n XXX:" << std::endl;
-
-    for ( size_t ind = 0; ind < 7; ind++ )
-    {
-        std::cout << screen_data.ball[ind] << std::endl;
-
-    }
-
-    std::cout << "--------program--------" << std::endl;
-    
-    for ( size_t ind = 0; ind < 36; ind++ )
-    {
-        if (ind % 6 < 5)
-            std::cout << screen_data.program_memory[ind] << " ";
-        else
-            std::cout << screen_data.program_memory[ind] << std::endl; //screen_data.program_memory[ind] << std::endl;
-
-    }
-
-    std::cout << std::endl;*/
 }
 
 void Connection::get_button_num(int button_index)
@@ -731,7 +726,7 @@ std::string Connection::create_tablo_string()
 }
 
 
-/*/
+//*/
 int main()
 {
     Connection x;
