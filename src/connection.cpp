@@ -434,6 +434,9 @@ void create_number_string(std::string& screen_string, const std::string& default
     else
     {
         screen_string = std::to_string( number_representation.body);
+
+        if ( screen_string.size() > 8 )
+            screen_string.resize( 8);
         
         if ( number_representation.power > 0 )
             screen_string = screen_string + " +";        
