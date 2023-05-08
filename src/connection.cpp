@@ -726,7 +726,7 @@ std::string Connection::create_tablo_string()
 }
 
 
-//*/
+/*/
 int main()
 {
     Connection x;
