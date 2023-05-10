@@ -429,7 +429,7 @@ void Connection::add_program_handler()
     program_mem.add(button_hash);
 }
 
-void create_number_string(std::string& screen_string, const std::string& default_string, auto number_to_convert, size_t length_of_string)
+void create_number_string(std::string& screen_string, const std::string& default_string, double number_to_convert, size_t length_of_string)
 {
     Number number_representation = standard( number_to_convert);
          
