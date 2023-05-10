@@ -37,12 +37,10 @@ Number standard(double num) {
     std::stringstream nss;
 
     if ((pos > 7) || (str[0] == '0' and pos == 1 and str.find_first_not_of('0', 2) != str.npos)) {
-        std::cout << "scientific form\n";
         nss.setf(std::ios::scientific);
         nss << num;
     } 
     else {
-        std::cout << "normal form\n";
         nss.setf(std::ios::fixed);
         nss << std::setprecision(8 - pos) << num;
     }  
