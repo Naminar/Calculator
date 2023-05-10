@@ -488,7 +488,13 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
         screen_data.pow = " +" + std::to_string( degree_hash);
 
-        //screen_data.ball[0] = screen_data.tablo + screen_data.pow;
+
+        screen_data.ball[0] = screen_data.tablo;
+        
+        if ( screen_data.ball[0].size() > 5 )
+            screen_data.ball[0].resize( 5); 
+        
+        screen_data.ball[0] = screen_data.ball[0] + screen_data.pow;
     }
     else
     {
