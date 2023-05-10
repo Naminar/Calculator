@@ -305,6 +305,10 @@ void Connection::command_handler()
     
         //create_tablo_information();
     }
+    else if ( button_hash == 38 )
+    {
+        mem.power();
+    }
     else if ( mode_program_execution == true && button_hash == RESET_INDEX_OF_PROGRAM ) //  B/O
     {
         program_mem.set_position( 0);
