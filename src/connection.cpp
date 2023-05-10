@@ -462,6 +462,8 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
     //screen_data.screen_tablo = to_string( mem.roundStack[0]);
 
+    screen_data.pow = "";
+
     for ( size_t ind = 0; ind < 7; ind++ )
     {
         screen_data.ball[ind] = std::to_string( mem.roundStack[ind]);
@@ -479,7 +481,10 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     {
         //Number number_representation = mem.standard( mem.roundStack[0]);
         
-        screen_data.tablo = screen_data.ball[0] + " +" + std::to_string( degree_hash);
+        screen_data.tablo = screen_data.ball[0];
+        screen_data.pow = " +" + std::to_string( degree_hash);
+
+        screen_data.ball[0] = screen_data.tablo + screen_data.pow;
     }
     else
     {

@@ -27,6 +27,7 @@ struct Data
 {
     //std::string screen_tablo = "0";
     std::string tablo;
+    std::string pow;
     
     std::string proga[36];
 
