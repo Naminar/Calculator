@@ -429,7 +429,7 @@ void Connection::add_program_handler()
     program_mem.add(button_hash);
 }
 
-void create_number_string(std::string& screen_string, const std::string& default_string, auto number_to_convert)
+void create_number_string(std::string& screen_string, const std::string& default_string, auto number_to_convert, size_t length_of_string)
 {
     Number number_representation = standard( number_to_convert);
          
@@ -439,8 +439,8 @@ void create_number_string(std::string& screen_string, const std::string& default
     {
         screen_string = std::to_string( number_representation.body);
 
-        if ( screen_string.size() > 8 )
-            screen_string.resize( 8);
+        if ( screen_string.size() > length_of_string )
+            screen_string.resize( length_of_string);
         
         if ( number_representation.power > 0 )
             screen_string = screen_string + " +";        
@@ -466,9 +466,9 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
 
         screen_data.registers[ind] = std::to_string( mem.registers[ind]);
 
-        create_number_string( screen_data.ball[ind], screen_data.ball[ind], mem.roundStack[ind]);
+        create_number_string( screen_data.ball[ind], screen_data.ball[ind], mem.roundStack[ind], 5);
 
-        create_number_string( screen_data.registers[ind], screen_data.registers[ind], mem.registers[ind]);
+        create_number_string( screen_data.registers[ind], screen_data.registers[ind], mem.registers[ind], 5);
     }
 
     if ( str_here == true )
@@ -481,7 +481,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     }
     else
     {
-        create_number_string( screen_data.tablo, screen_data.ball[0], mem.roundStack[0]);
+        create_number_string( screen_data.tablo, screen_data.ball[0], mem.roundStack[0], 8);
         
         /*
          Number number_representation = standard( mem.roundStack[0]);
