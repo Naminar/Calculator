@@ -465,6 +465,10 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         screen_data.ball[ind] = std::to_string( mem.roundStack[ind]);
 
         screen_data.registers[ind] = std::to_string( mem.registers[ind]);
+
+        create_number_string( screen_data.ball[ind], screen_data.ball[ind], mem.roundStack[ind]);
+
+        create_number_string( screen_data.registers[ind], screen_data.registers[ind], mem.registers[ind]);
     }
 
     if ( str_here == true )
