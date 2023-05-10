@@ -512,7 +512,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         }
         */
 
-        Number number_representation = standard( number_to_convert);
+        Number number_representation = standard( mem.roundStack[0]);
 
         screen_data.tablo = std::to_string( mem.roundStack[0]);
 
