@@ -479,7 +479,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
     {
         //Number number_representation = mem.standard( mem.roundStack[0]);
         
-        screen_data.tablo = screen_data.ball[0] + std::to_string( degree_hash);
+        screen_data.tablo = screen_data.ball[0] + " +" + std::to_string( degree_hash);
     }
     else
     {
