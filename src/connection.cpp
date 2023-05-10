@@ -269,9 +269,17 @@ void Connection::command_handler()
                 break;
 
             case 5:
-                mem.opposite();
+            {
+                if ( degree_flag == true )
+                {
+                    degree_hash = 0 - degree_hash;
+                }
+                else
+                {
+                    mem.opposite();
+                }
                 break;
-
+            }
             /*
             
             case 6:
@@ -486,8 +494,10 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         if ( screen_data.tablo.size() > 8 )
             screen_data.tablo.resize( 8);
 
-        screen_data.pow = " +" + std::to_string( degree_hash);
-
+        if ( degree_hash > 0)
+            screen_data.pow = " +" + std::to_string( degree_hash);
+        else 
+            screen_data.pow = std::to_string( degree_hash);
 
         screen_data.ball[0] = screen_data.tablo;
         
