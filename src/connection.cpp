@@ -270,14 +270,7 @@ void Connection::command_handler()
 
             case 5:
             {
-                if ( degree_flag == true )
-                {
-                    degree_hash = 0 - degree_hash;
-                }
-                else
-                {
-                    mem.opposite();
-                }
+                mem.opposite();
                 break;
             }
             /*
@@ -579,6 +572,10 @@ void Connection::get_button_num(int button_index)
         mem.storeDigit( 0, false);
         
         create_tablo_information();    
+    }
+    else if ( button_index == 56 && degree_flag == true)
+    {
+        degree_hash = 0 - degree_hash;
     }
     else if ( button_index == VP && num_button_flag == true )
     {
