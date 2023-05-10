@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <cmath>
 #include <algorithm>
 #include <array>

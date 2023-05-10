@@ -7,39 +7,63 @@ bool isEqual(double num1, double num2) {
 
 bool isZero(double num) { return isEqual(num, 0); }
 
-
-
-int digitCount(double num) {
-    int body = int(num);
-    
-    int counter = 0;
-    while (body != 0) { ++counter; body /= 10;}
-    while (num - int(num) != 0) { ++counter; num *= 10; }
-    return counter;
+auto splitString(const std::string& str) {
+    auto pos = str.find('e');
+    if (pos != str.npos) {
+        std::string prefix {str.begin(), str.begin() + pos};
+        std::string suffix {str.begin() + pos + 1, str.end()};
+        return Number{std::stod(prefix), std::stoi(suffix)};
+    }
+    else {
+        return Number{std::stod(str), 0};
+    }
 }
 
 Number standard(double num) {
-    Number tmp; 
-    tmp.body = num;
+    // int body = int(num);
+    
+    // int counter = 0;
+    // while (body != 0) { std::cout << "counting body\n";++counter; body /= 10;}
+    // while (num - int(num) != 0) { 
+    //     ++counter; num *= 10; }
+    // return counter;
 
-    std::cout << digitCount(tmp.body) << std::endl;
+    std::stringstream ss;
+    ss.setf(std::ios::fixed);
+    ss << std::setprecision(100) << num;
 
-    int counter = digitCount(tmp.body);
-    if (counter > 8) {
-        if (tmp.body > 10) {
-            while (int(tmp.body) / 10 != 0) {
-                tmp.body *= std::pow(10, -1);
-                tmp.power += 1;
-            }
-        }
-        else if (tmp.body < 1) {
-            while (int(tmp.body) == 0) {
-                tmp.body *= std::pow(10, 1);
-                tmp.power -= 1;
-            }
-        }
-    }
-    return tmp;
+    auto str = ss.str();
+    auto pos = str.find('.');
+    std::stringstream nss;
+
+    if ((pos > 7) || (str[0] == '0' and pos == 1 and str.find_first_not_of('0', 2) != str.npos)) {
+        std::cout << "scientific form\n";
+        nss.setf(std::ios::scientific);
+        nss << num;
+    } 
+    else {
+        std::cout << "normal form\n";
+        nss.setf(std::ios::fixed);
+        nss << std::setprecision(8 - pos) << num;
+    }  
+
+    // std::cout << "scientific form\n";
+    // nss.setf(std::ios::scientific);
+    // nss << num;
+
+    // auto eshka = str.find('e');
+    // std::string suffix {str.begin() + eshka + 1, str.end()};
+    // if (std::stoi(suffix) > 7 || std::stoi(suffix) < -7) {
+    //     std::string prefix {str.begin(), str.begin() + eshka};
+    //     return Number{std::stod(prefix), std::stoi(suffix)};
+    // }
+    // else {
+    //     return Number{std::stod(str), 0};
+    // }
+
+    return splitString(nss.str());
+
+    // std::cout << "ss.str() = " << nss.str() << std::endl;
 }
 
 
