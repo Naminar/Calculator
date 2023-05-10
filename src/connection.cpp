@@ -483,8 +483,8 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         
         screen_data.tablo = screen_data.ball[0];
 
-        if ( screen_data.size() > 8 )
-            screen_string.resize( 8);
+        if ( screen_data.tablo.size() > 8 )
+            screen_data.tablo.resize( 8);
 
         screen_data.pow = " +" + std::to_string( degree_hash);
 
@@ -517,7 +517,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         screen_data.tablo = std::to_string( mem.roundStack[0]);
 
         if ( screen_data.tablo.size() > 8 )
-            screen_string.resize( 8);
+            screen_data.tablo.resize( 8);
         
         if ( number_representation.power != 0 )
         {
