@@ -482,13 +482,17 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         //Number number_representation = mem.standard( mem.roundStack[0]);
         
         screen_data.tablo = screen_data.ball[0];
+
+        if ( screen_data.size() > 8 )
+            screen_string.resize( 8);
+
         screen_data.pow = " +" + std::to_string( degree_hash);
 
         screen_data.ball[0] = screen_data.tablo + screen_data.pow;
     }
     else
     {
-        create_number_string( screen_data.tablo, screen_data.ball[0], mem.roundStack[0], 8);
+        //create_number_string( screen_data.tablo, screen_data.ball[0], mem.roundStack[0], 8);
         
         /*
          Number number_representation = standard( mem.roundStack[0]);
@@ -508,6 +512,18 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         }
         */
 
+        Number number_representation = standard( number_to_convert);
+
+        screen_data.tablo = std::to_string( mem.roundStack[0]);
+
+        if ( screen_data.tablo.size() > 8 )
+            screen_string.resize( 8);
+        
+        if ( number_representation.power != 0 )
+        {
+            if ( number_representation.power > 0)
+                screen_data.pow = "+" + std::to_string( number_representation.power);
+        }
 
     }
     
