@@ -434,7 +434,11 @@ void create_number_string(std::string& screen_string, const std::string& default
     Number number_representation = standard( number_to_convert);
          
     if ( number_representation.power == 0 )
-        screen_string = default_string;
+    {   screen_string = default_string;
+        
+        if ( screen_string.size() > 8 )
+            screen_string.resize( 8);
+    }
     else
     {
         screen_string = std::to_string( number_representation.body);
@@ -444,8 +448,6 @@ void create_number_string(std::string& screen_string, const std::string& default
         
         if ( number_representation.power > 0 )
             screen_string = screen_string + " +";        
-        else
-            screen_string = screen_string + " -";
                                         
         screen_string = screen_string + std::to_string( number_representation.power);
     }
