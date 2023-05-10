@@ -237,7 +237,11 @@ void Connection::command_handler()
     }
     else if ( button_hash % 10 == 6 )
     {
-        num_button_flag = false;
+        if ( num_button_flag == true && button_hash == 56)
+            num_button_flag = true;
+        else
+            num_button_flag = false;
+        
         degree_flag     = false;
 
         switch ( button_hash / 10)
@@ -490,7 +494,7 @@ void Connection::create_tablo_information(bool str_here, std::string error_line)
         if ( degree_hash > 0)
             screen_data.pow = " +" + std::to_string( degree_hash);
         else 
-            screen_data.pow = " -" + std::to_string( degree_hash);
+            screen_data.pow = std::to_string( degree_hash);
 
         screen_data.ball[0] = screen_data.tablo;
         
@@ -576,6 +580,8 @@ void Connection::get_button_num(int button_index)
     else if ( button_index == 56 && degree_flag == true)
     {
         degree_hash = 0 - degree_hash;
+
+        create_tablo_information();
     }
     else if ( button_index == VP && num_button_flag == true )
     {
@@ -639,7 +645,11 @@ void Connection::get_button_num(int button_index)
 
         comma_button_flag = false;
 
-        bool mode_program_execution = false;
+        mode_program_execution = false;
+
+        degree_hash = 0;
+
+        degree_flag = false;
 
         mem.reset();
         program_mem.clear();
