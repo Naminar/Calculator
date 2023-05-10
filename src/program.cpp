@@ -54,7 +54,7 @@ int Program::address(int hex)
 	return (hex / 10) + (hex % 10) - 1;
 };
 
-int Program::condition(auto x_register_ptr)
+int Program::condition(double  *x_register_ptr)
 {
 	std::cout << "Condition" << std::endl;
 	int jump;

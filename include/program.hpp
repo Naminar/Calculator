@@ -18,7 +18,7 @@ public:
 	void fin_program();
 	void next_cell(); // подвинуть на один вперед
 	void previous_cell(); // подвинуть на один назад
-	int condition(auto x_register_ptr); // условные переходы
+	int condition(double *x_register_ptr); // условные переходы
 	void clear(); // обнулить массив
 	unsigned int get_position();
 	

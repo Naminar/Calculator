@@ -43,13 +43,13 @@ class CalcFrame : public wxFrame
     Connection     back_end;
     int            flag_on_off;
 
-    wxBoxSizer     *sizer_0, *sizer_1, *sizer_program;
+    wxBoxSizer     *sizer_0, *sizer_1, *sizer_program, *sizer_cell[36];
     BackPanel      *drawPanel, *drawReg;
     wxPanel        *panel_program;
     wxBitmapButton *button[103];
     //wxTextCtrl     *scoreboard[8];
     wxTextCtrl     *scoreboard, *program[36], *registers[8], *circular_stack[6];
-    wxStaticText   *label_program, *label_registers;
+    wxStaticText   *label_program, *label_registers, *address[36];
     wxGridSizer    *gs_program;
 
 public:
@@ -168,9 +168,24 @@ CalcFrame::CalcFrame (const wxString& title)
     {
         int i = (j / 6) + (j % 6) * 6;    // converting strings to columns
         program[i] = new wxTextCtrl (panel_program, -1, wxT(""), wxPoint (-1, -1),
-                                     wxSize(100, 40), wxTE_RIGHT);
-        program[i]->SetFont (wxFontInfo(30));
-        gs_program->Add (program[i], 0, wxEXPAND);
+                                     wxSize(80, 40), wxTE_RIGHT);
+        program[i]->SetFont (wxFontInfo(40));
+
+        int ad_1 = (i + 1) % 6;
+        if (ad_1 == 0) { ad_1 = 6; }
+        int ad = 10 * (i / 6) + ad_1;
+
+        std::string address_cell;
+        if (ad < 7) { address_cell = "0" + std::to_string(ad); }
+        else        { address_cell = std::to_string(ad); }
+
+        address[i] = new wxStaticText (panel_program, wxID_ANY, _(address_cell));
+        address[i]->SetFont (wxFontInfo (30));
+        
+        sizer_cell[i] = new wxBoxSizer (wxHORIZONTAL);
+        sizer_cell[i]->Add (address[i], 0, wxEXPAND);
+        sizer_cell[i]->Add (program[i], 0, wxEXPAND);
+        gs_program->Add (sizer_cell[i], 1, wxEXPAND);
     }
 
     sizer_program = new wxBoxSizer (wxVERTICAL);
