@@ -2,7 +2,7 @@
 all: main
 
 main: connection.o memory.o calc.o
-	g++ connection.o  memory.o calc.o `wx-config --cxxflags --libs` -std=c++20 -o main
+	g++ memory.o  connection.o calc.o `wx-config --cxxflags --libs` -std=c++20 -o main
 	rm -rf *.o *.gch
 
 calc.o:
