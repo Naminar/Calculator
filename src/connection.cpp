@@ -79,34 +79,14 @@ void Connection::command_handler()
             case 5:
                 mem.rightRotate();
                 break;
-            /*
-            case 6:
-                create_tablo_information();
-                break;
-
-            case 7:
-                create_tablo_information();
-                break;
-            
-            */
 
             case 8:
-                mem.cosinus(); //create_tablo_information(); } // cos
+                mem.cosinus();
                 break;
 
             case 9:
-                mem.sinus(); // sin
+                mem.sinus();
                 break;
-
-            /*
-            default:
-            {
-                std::cout << __PRETTY_FUNCTION__ << std::endl;
-
-                exit(3);
-            }
-            
-            */
         };
 
         //create_tablo_information();
@@ -159,80 +139,27 @@ void Connection::command_handler()
         degree_flag     = false;
 
         switch ( button_hash / 10)
-        {
-            /*
-            
-            case 0:
-                create_tablo_information();
-                break;
-
-            case 1:
-                create_tablo_information();
-                break;
-
-            case 2:
-                create_tablo_information();
-                break;
-
-            case 3:
-                 create_tablo_information();
-                break;
-            
-            */
-
+        {            
             case 4:
             {
                 try { mem.reciprocal(); }
-                catch( ... ) { error_key = true; error_line = "ERROR"; }//screen_data.ball[0] = "ERROR"; std::cout << screen_data.ball[0] << std::endl; } //create_tablo_information();// 1/x
+                catch( ... ) { error_key = true; error_line = "ERROR"; }
 
                 break;
             }
         
             case 5:
             {
-                mem.square(); //create_tablo_information();// x^2
-                
-                //create_tablo_information();
-
+                mem.square(); 
                 break;
             }
             case 6:
             {
-                //create_tablo_information();// sqrt
                 try { mem.squareRoot(); }
                 catch( ... ) { error_key = true; error_line = "ERROR"; }
-
-                //create_tablo_information();
                 
                 break;
             }
-            /*
-            
-            case 7:
-                create_tablo_information();
-                break;
-
-            case 8:
-                create_tablo_information();
-                break;
-
-            case 9:
-                create_tablo_information();
-                break;
-            
-            */
-
-
-            /*
-            
-            default:
-            {
-                std::cout << __PRETTY_FUNCTION__ << std::endl;
-
-                exit(3);
-            }
-
-            */
         };
     }
     else if ( button_hash % 10 == 6 )
@@ -277,16 +204,6 @@ void Connection::command_handler()
                 mem.opposite();
                 break;
             }
-            /*
-            
-            case 6:
-                create_tablo_information();// BH
-                break;
-
-            case 7:
-                create_tablo_information();// RESET - CX
-                break;
-            */
 
             case 8:
                 mem.minus();
@@ -295,17 +212,6 @@ void Connection::command_handler()
             case 9:
                 mem.plus();
                 break;
-
-            /*
-            
-            default:
-            {
-                std::cout << __PRETTY_FUNCTION__ << std::endl;
-
-                exit(3);
-            }
-
-            */
         };
     
         //create_tablo_information();
@@ -322,9 +228,20 @@ void Connection::command_handler()
     {
         program_execution_handler();
 
-        program_mem.set_position(0);
+        program_mem.set_position( 0);
 
         reset_all_flags();
+    }
+    else if (  mode_program_execution == true && button_hash == PP ) // PP
+    {
+        // if they have a problems they return bool = "true"
+        
+        if ( step_by_step_program() )
+        {
+            error_key = true;
+
+            error_line = "ERROR";
+        }
     }
 
     create_tablo_information(error_key, error_line);
@@ -333,13 +250,16 @@ void Connection::command_handler()
 
 void Connection::reset_all_flags()
 {
-    int button_hash         = 0;
-    bool mode_pressed       = false;
-    bool num_button_flag    = false; 
-    bool comma_button_flag  = false;
+    button_hash         = 0;
+    mode_pressed       = false;
+    num_button_flag    = false; 
+    comma_button_flag  = false;
 
-    bool mode_enter_progarm = false;
-    bool mode_program_execution = false;
+    mode_enter_progarm = false;
+    mode_program_execution = false;
+
+    degree_flag = false;
+    degree_hash = 0;
 }
 
 void Connection::program_execution_handler()
@@ -352,6 +272,95 @@ void Connection::program_execution_handler()
             && 
             exit_flag == false
           )
+    {
+        
+        //std::cout << (int) program_mem.program_memory[position_] << std::endl;
+        
+        switch ( program_mem.program_memory[position_] )
+        {
+            
+            case 39:
+            {
+                
+                program_mem.next_cell();
+
+                break;
+            }            
+            
+            case 49:
+            {
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
+
+                break;
+            }
+
+            case 59:
+            {
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
+                
+                break;
+            }
+
+            case 69:
+            {
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
+                
+                break;
+            }
+
+            case 79:
+            {
+                if ( program_mem.condition( &(mem.roundStack[0])) < 0)
+                {
+                    exit_flag = true;
+                };
+                
+                break;
+            }
+
+            default:
+            {
+                button_hash = program_mem.program_memory[position_];
+                
+                command_handler();
+
+                button_hash = 0;
+
+                program_mem.next_cell();    
+            }
+        };
+
+        position_ = program_mem.get_position();        
+    }
+
+    if ( exit_flag == true )
+    {
+        create_tablo_information( true, "ERROR");
+    }
+}
+
+bool Connection::step_by_step_program()
+{
+    static auto position_ = program_mem.get_position();
+
+    static bool exit_flag = false;
+
+    if ( position_ == 0 )
+        exit_flag = false;
+    
+    if  ( program_mem.program_memory[position_] != END_OF_PROGRAM 
+          && 
+          exit_flag == false
+        )
     {
         
         //std::cout << (int) program_mem.program_memory[position_] << std::endl;
@@ -423,10 +432,15 @@ void Connection::program_execution_handler()
         position_ = program_mem.get_position();        
     }
 
-    if ( exit_flag == true )
+    /*if ( exit_flag == true )
     {
         create_tablo_information( true, "ERROR");
     }
+    else
+        create_tablo_information();
+    */
+
+    return exit_flag;
 }
 
 void Connection::add_program_handler()
@@ -460,13 +474,8 @@ void create_number_string(std::string& screen_string, const std::string& default
 
 void Connection::create_tablo_information(bool str_here, std::string error_line)
 {
-    //mem.roundStack[0];
-    //mem.registers[0];
-
-    //std::cout << std::to_string( mem.roundStack[0]) << std::endl;
-
-    //screen_data.screen_tablo = to_string( mem.roundStack[0]);
-
+    screen_data.program_position  = program_mem.get_position();
+    
     screen_data.pow = "";
 
     for ( size_t ind = 0; ind < 7; ind++ )
@@ -608,6 +617,20 @@ void Connection::get_button_num(int button_index)
 
         comma_button_flag = false;
     }
+    else if ( mode_enter_progarm == true && button_index == RR)
+    {
+        if ( program_mem.get_position() > 0)
+            program_mem.set_position( program_mem.get_position() - 1);
+        
+        create_tablo_information();
+    }
+    else if ( mode_enter_progarm == true && button_index == RP)
+    {
+        if ( program_mem.get_position() < 35)
+            program_mem.set_position( program_mem.get_position() + 1);
+        
+        create_tablo_information();
+    }
     else if ( button_index == RR && mode_pressed == true )
     {
         mode_program_execution = true;
@@ -691,27 +714,6 @@ void Connection::get_button_num(int button_index)
                 else if ( button_hash == 2 )
                     button_hash = button_index - 1;
             }
-            /*else if ( button_index == RP )
-            {
-                mode_enter_progarm = true;
-
-                std::cout << "enter_progrmm"<< std::endl;
-
-            //------ all flags and hash ------
-                
-                button_hash = 0;
-
-                num_button_flag = false;
-
-                mode_pressed = false;
-
-                comma_button_flag = false;
-            
-                continue;
-            }
-            */
-            // reset mode pressed button
-
             mode_pressed = false;
         }
         else
@@ -722,23 +724,6 @@ void Connection::get_button_num(int button_index)
         if ( mode_enter_progarm == true )
         {
             add_program_handler();
-            
-            /*
-            auto position_ = program_mem.get_position() - 1;
-            
-            std::string prev_code_on_tablo = std::to_string( program_mem.program_memory[ position_]);
-
-            if ( position_ > 0 && position_ < 2)
-            {
-                prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1]);
-            }
-            else if ( position_ > 1 )
-            {
-                prev_code_on_tablo += " " + std::to_string( program_mem.program_memory[ position_ - 1])
-                                      +
-                                      " " + std::to_string( program_mem.program_memory[ position_ - 2]);
-            }
-            */
 
             create_tablo_information( true, create_tablo_string());//prev_code_on_tablo);
 

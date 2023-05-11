@@ -22,6 +22,7 @@
 #define CX 76
 #define NUMBER_OF_REGISTERS 7
 #define VP 66
+#define PP 68
 
 struct Data
 {
@@ -36,6 +37,8 @@ struct Data
     std::string ball[7];
 
     std::string program_memory[36];
+
+    int program_position = 0;
 };
 
 class Connection
@@ -77,5 +80,7 @@ class Connection
     void program_execution_handler(void);
 
     void reset_all_flags(void);
+
+    bool step_by_step_program(void);
 };
 
