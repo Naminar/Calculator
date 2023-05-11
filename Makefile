@@ -1,8 +1,8 @@
 
 all: main
 
-main: connection.o memory.o calc.o
-	g++ connection.o  memory.o calc.o `wx-config --cxxflags --libs` -std=c++20 -o main
+main: connection.o memory.o calc.o program.o
+	g++ memory.o  connection.o calc.o program.o `wx-config --cxxflags --libs` -std=c++20 -o main
 	rm -rf *.o *.gch
 
 calc.o:
@@ -13,6 +13,10 @@ connection.o:
 
 memory.o:
 	g++ -c src/memory.cpp -std=c++20
+
+program.o:
+	g++ -c src/program.cpp -std=c++20
+	
 
 clean: 
 	rm -rf *.o main

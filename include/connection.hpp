@@ -1,7 +1,9 @@
 
 #include <iostream>
 #include <string>
+#include "memory.hpp"
 #include "program.hpp"
+
 
 #define RP 100
 #define RR 101
@@ -18,11 +20,15 @@
 #define RESET_INDEX_OF_PROGRAM 48
 
 #define CX 76
+#define NUMBER_OF_REGISTERS 7
+#define VP 66
+#define PP 68
 
 struct Data
 {
     //std::string screen_tablo = "0";
     std::string tablo;
+    std::string pow;
     
     std::string proga[36];
 
@@ -31,11 +37,16 @@ struct Data
     std::string ball[7];
 
     std::string program_memory[36];
+
+    int program_position = 0;
 };
 
 class Connection
 {
-    int button_hash   = 0;
+    int button_hash   = 0,
+        degree_hash   = 0;
+        
+    bool degree_flag = false;
     bool mode_pressed = false;
     bool num_button_flag = false; // the last tap was number button
     bool comma_button_flag = false;
@@ -69,5 +80,7 @@ class Connection
     void program_execution_handler(void);
 
     void reset_all_flags(void);
+
+    bool step_by_step_program(void);
 };
 
