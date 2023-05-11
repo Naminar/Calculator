@@ -25,6 +25,9 @@ void storeDigit(T number, bool isFloat = false) {
     static bool frac = false;
 
     static int counter = 1;
+
+    if (roundStack[0] < 0) number = -number;
+
     if (!isFloat) {
         if (frac == true) roundStack[0] = 0;
         roundStack[0] = roundStack[0] * 10 + number;
