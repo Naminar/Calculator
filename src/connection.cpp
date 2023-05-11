@@ -584,6 +584,7 @@ void Connection::get_button_num(int button_index)
         mem.storeDigit( 0, true);
         mem.storeDigit( 0, false);
 
+        comma_button_flag = false;
         degree_flag = false;
         degree_hash = 0;
         
