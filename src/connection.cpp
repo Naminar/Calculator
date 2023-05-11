@@ -583,6 +583,9 @@ void Connection::get_button_num(int button_index)
 
         mem.storeDigit( 0, true);
         mem.storeDigit( 0, false);
+
+        degree_flag = false;
+        degree_hash = 0;
         
         create_tablo_information();    
     }
@@ -617,14 +620,14 @@ void Connection::get_button_num(int button_index)
 
         comma_button_flag = false;
     }
-    else if ( mode_enter_progarm == true && button_index == RR)
+    else if ( mode_enter_progarm == true && button_index == RR && mode_pressed == false )
     {
         if ( program_mem.get_position() > 0)
             program_mem.set_position( program_mem.get_position() - 1);
         
         create_tablo_information();
     }
-    else if ( mode_enter_progarm == true && button_index == RP)
+    else if ( mode_enter_progarm == true && button_index == RP && mode_pressed == false )
     {
         if ( program_mem.get_position() < 35)
             program_mem.set_position( program_mem.get_position() + 1);
