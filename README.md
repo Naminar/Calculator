@@ -1,17 +1,28 @@
 
-# Calculator 
-_Calculator Emulator. Semester project at MIPT._
+# Calculator
+#### _Calculator Emulator. Semester project at MIPT._
+### Final version of project 
 
-## Final version of project 
 ### Huge thanks to: 
 [@AlekseiSeverin03](https://github.com/AlekseiSeverin03) 
 [@milkicow](https://github.com/milkicow) 
 [@nktshch](https://github.com/nktshch)
-### Кому что необходимо для связи:
-* Если Вы **`интерфейс`** - `connection.cpp`
-* Если Вы **`связь`** - `memory.cpp` & `memory.hpp` & &
-* Если Вы **`память`** - `connection.cpp`
-* Если Вы **`обработчик программы`** - `connection.cpp`
-
-#### !! Возможно где-то необходимо закоментить main()
-#### Добавил makefile
+- - -
+### File links:
+* **_if you_** --- **_need to connect_** 
+* **`interface`** - `connection.hpp`
+* **`connection`** - `memory.hpp` & `program.hpp`
+* **`memory`** - **`autonomy`**
+* **`program`** - **`autonomy`**
+- - -
+## ©Copyright
+<p align="center">
+	<img src="README/LogoMIPT/mipt1.png" 
+		width="50%" 
+		style="background-color: transparent;"
+	/>
+	<img src="README/LogoMIPT/greyFRKT.png" 
+		width="30%"
+		style="background-color: transparent;"
+	/>
+<p>
