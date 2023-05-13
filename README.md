@@ -7,6 +7,7 @@
 [@AlekseiSeverin03](https://github.com/AlekseiSeverin03) 
 [@milkicow](https://github.com/milkicow) 
 [@nktshch](https://github.com/nktshch)
+### [Technical document](README/CalcB3_21.pdf)
 - - -
 ### File links:
 * **_if you_** --- **_need to connect_** 
