@@ -1,20 +1,12 @@
 
 # Calculator
 #### _Calculator Emulator. Semester project at MIPT._
-### Final version of project 
-
-### Huge thanks to: 
-[@AlekseiSeverin03](https://github.com/AlekseiSeverin03) 
-[@milkicow](https://github.com/milkicow) 
-[@nktshch](https://github.com/nktshch)
-### Technical document [here](README/CalcB3_21.pdf)
+##### _Technical document [here](README/CalcB3_21.pdf)._
 - - -
-### File links:
-* **_if you_** --- **_need to connect_** 
-* **`interface`** - `connection.hpp`
-* **`connection`** - `memory.hpp` & `program.hpp`
-* **`memory`** - **`autonomy`**
-* **`program`** - **`autonomy`**
+### Huge thanks to: 
+* [@AlekseiSeverin03](https://github.com/AlekseiSeverin03) - interface realization
+* [@milkicow](https://github.com/milkicow) - memory realization
+* [@nktshch](https://github.com/nktshch) - program realization
 - - -
 ## ©Copyright
 <p align="center">
